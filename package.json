@@ -1,5 +1,5 @@
 {
-  "name": "dirmaker",
+  "name": "makedirs",
   "version": "0.0.2",
   "description": "Utility for bulk creation of directories.",
   "main": "index.js",
@@ -27,7 +27,7 @@
   "author": "Ricardo Veguilla <veguilla@gmail.com>",
   "license": "Apache-2.0",
   "bin": {
-    "dirmaker": "./cli/dirmaker.js"
+    "makedirs": "./cli/makedirs.js"
   },
   "dependencies": {
     "chownr": "~1.0.1",
