@@ -1,0 +1,40 @@
+{
+  "name": "dirmaker",
+  "version": "0.0.1",
+  "description": "Utility for bulk creation of directories.",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 5.9"
+  },
+  "scripts": {
+    "lint": "eslint src ",
+    "test": "eslint src "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/rveguilla/dirmaker"
+  },
+  "keywords": [
+    "mkdir",
+    "mkdirp",
+    "chownr",
+    "chmodr",
+    "dir",
+    "dirs",
+    "directory",
+    "directories"
+  ],
+  "author": "Ricardo Veguilla <veguilla@gmail.com>",
+  "license": "Apache-2.0",
+  "bin": {
+    "dirmaker": "./cli/dirmaker.js"
+  },
+  "dependencies": {
+    "chownr": "~1.0.1",
+    "commander": "~2.9.0",
+    "mkdirp": "~0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "~2.5.3"
+  }
+}
