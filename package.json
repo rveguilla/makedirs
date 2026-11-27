@@ -1,40 +1,67 @@
 {
   "name": "makedirs",
   "version": "0.0.3",
-  "description": "Utility for bulk creation of directories.",
-  "main": "index.js",
+  "description": "Node.js library and CLI utility for bulk creation of directories with permissions and ownership.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "makedirs": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
   "engines": {
-    "node": ">= 5.9"
+    "node": ">=22.18.0"
   },
   "scripts": {
-    "lint": "eslint src ",
-    "test": "eslint src "
+    "clean": "node -e \"import('node:fs').then(fs => fs.rmSync('dist', { recursive: true, force: true }))\"",
+    "build": "npm run clean && tsc -p tsconfig.build.json && node -e \"import('node:fs').then(fs => fs.chmodSync('dist/cli.js', 0o755))\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run build && node --test \"test/**/*.test.ts\"",
+    "prepublishOnly": "npm run lint && npm run format:check && npm run typecheck && npm test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rveguilla/makedirs"
+    "url": "https://github.com/rveguilla/makedirs.git"
   },
+  "bugs": {
+    "url": "https://github.com/rveguilla/makedirs/issues"
+  },
+  "homepage": "https://github.com/rveguilla/makedirs#readme",
   "keywords": [
     "mkdir",
+    "makedirs",
     "mkdirp",
-    "chownr",
-    "chmodr",
+    "chown",
+    "chmod",
     "dir",
     "dirs",
     "directory",
-    "directories"
+    "directories",
+    "cli"
   ],
   "author": "Ricardo Veguilla <veguilla@gmail.com>",
   "license": "Apache-2.0",
-  "bin": {
-    "makedirs": "./cli/makedirs.js"
-  },
   "dependencies": {
-    "chownr": "~1.0.1",
-    "commander": "~2.9.0",
-    "mkdirp": "~0.5.1"
+    "commander": "^15.1.0"
   },
   "devDependencies": {
-    "eslint": "~2.5.3"
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.7",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.10.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.74.0"
   }
 }
